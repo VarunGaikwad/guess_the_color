@@ -4,7 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
-  const [colors, setColors] = useState(generateOption()),
+  const [score, setScore] = useState(0),
+    [colors, setColors] = useState(generateOption()),
     [correctIndex, setCorrectIndex] = useState(
       Math.floor(Math.random() * colors.length)
     ),
@@ -20,12 +21,14 @@ export default function App() {
       if (flag) {
         setColors(generateOption());
         setCorrectIndex(Math.floor(Math.random() * colors.length));
+        setScore(score + 1);
       }
     };
 
   return (
     <main className="h-screen w-screen flex flex-col justify-center items-center bg-black bg-opacity-30 text-center font-semibold text-white">
       <ToastContainer />
+      <span className="text-4xl m-2">Score ({score})</span>
       <div
         className="size-60"
         style={{
